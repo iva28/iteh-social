@@ -15,11 +15,15 @@ class AuthService {
     }
 
     public function register(RegistrationRequest $request) {
-        User::create($request->validated());
+       return User::create($request->validated());
     }
 
     public function logout() {
         Auth::logout();
+    }
+
+    public function loginUser(User $user) {
+        Auth::login($user);
     }
 }
 
