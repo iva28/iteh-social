@@ -4,6 +4,10 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Database\Seeders\PostSeeder;
+use Database\Seeders\LikeSeeder;
+use Database\Seeders\CommentSeeder;
+use Database\Seeders\UserSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,11 +18,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $userSeeder = new UserSeeder();
+        $userSeeder -> run();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $postSeeder = new PostSeeder();
+        $postSeeder -> run();
+        
+        $friendSeeder = new FriendSeeder();
+        $friendSeeder -> run();
+
+        $commentSeeder = new CommentSeeder();
+        $commentSeeder -> run();
+
+        $likeSeeder = new LikeSeeder();
+        $likeSeeder -> run();
+        
+
     }
 }

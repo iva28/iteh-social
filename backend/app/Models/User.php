@@ -23,6 +23,7 @@ class User extends Authenticatable
         'name',
         'surname',
         'date_birth',  
+        'bio'
     ];
 
 
@@ -37,7 +38,8 @@ class User extends Authenticatable
     ];
 
     protected $casts = [
-        'date_birth' => "date"
+        'date_birth' => "date",
+        'password' => "hashed",
     ];
 
     public function posts() {
