@@ -22,7 +22,7 @@ class User extends Authenticatable
         'password',
         'name',
         'surname',
-        'date_birth',  
+        'date_birth',
         'bio'
     ];
 
@@ -39,12 +39,18 @@ class User extends Authenticatable
 
     protected $casts = [
         'date_birth' => "date",
-        'password' => "hashed",
+        //'password' => "hashed",
     ];
 
-    public function posts() {
+    public function posts()
+    {
         return $this->hasMany(Post::class);
     }
+    public function friendsFirstColumn() {
+        return $this->hasManyThrough(User::class, Friend::class, 'first_user_id', 'id', 'id', 'second_user_id');
+    }
 
-    /** Treba mi friends */
+    public function friendsSecondColumn() {
+        return $this->hasManyThrough(User::class, Friend::class, 'second_user_id', 'id', 'id', 'first_user_id');
+    }
 }

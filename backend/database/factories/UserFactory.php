@@ -23,7 +23,7 @@ class UserFactory extends Factory
             'surname' => fake()->lastName(),
             'username' => fake()->unique()->userName(),
             'date_birth' => fake() -> date($format = 'd-m-Y'),
-            'password' =>fake()->password(), // password
+            'password' => Hash::make("password"), // passord
             'bio' => fake() ->jobTitle(),
         ];
     }

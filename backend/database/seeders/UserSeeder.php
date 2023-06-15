@@ -16,30 +16,25 @@ class UserSeeder extends Seeder
     public function run()
     {
         // User::truncate();
-          User::factory()->count(7)->create();
-        // $users = [
-        //     [
-        //         'username' => 'ivaiva',
-        //         'password' => bcrypt('ivaiva'),
-        //         'name' => 'Iva',
-        //         'surname' => 'Ivin',
-        //         'bio' => '',
-        //         'date_birth' => '1990-01-01',
-        //     ],
-        //     [
-        //         'username' => 'nikolanikola',
-        //         'password' => bcrypt('nikolanikola'),
-        //         'name' => 'Nikola',
-        //         'surname' => 'Nikin',
-        //         'bio' => 'student',
-        //         'date_birth' => '2000-05-10',
-        //     ],
-        //     // Dodajte ostale korisnike sa željenim podacima
-        // ];
+        User::factory()->create( [
+          'username' => "iva28",
+          'name' => 'Iva',
+          'surname' => 'Stanisic',
+        ]);
 
-        // foreach ($users as $userData) {
-        //     User::create($userData);
-        // }
+        User::factory()->create( [
+          'username' => "ninanina",
+          'name' => 'Nina',
+          'surname' => 'Pantelic',
+        ]);
+
+        User::factory()->create( [
+          'username' => "milosmilos",
+          'name' => 'Milos',
+          'surname' => 'Popovic',
+        ]);
+          User::factory()->count(7)->create();
+        
 
     }
 }

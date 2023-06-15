@@ -7,6 +7,7 @@ use App\Http\Requests\RegistrationRequest;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthService {
 
@@ -15,7 +16,9 @@ class AuthService {
     }
 
     public function register(RegistrationRequest $request) {
-       return User::create($request->validated());
+       return User::create(array_merge($request->validated(), [
+        'password' => Hash::make($request->input('password'))
+       ]));
     }
 
     public function logout() {
