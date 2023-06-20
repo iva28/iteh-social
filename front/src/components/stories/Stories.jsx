@@ -7,28 +7,29 @@ function Stories() {
     {
       id: 1,
       name: "Neko Neko",
-      img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80",
+      img: "https://source.boringavatars.com/beam/120/iva?colors=cbd5e1,5b21b6,c4b5fd,a78bfa,7c3aed",
     },
     {
       id: 2,
       name: "Neko Neko",
-      img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80",
+      img: "https://source.boringavatars.com/beam/120/iva?colors=cbd5e1,5b21b6,c4b5fd,a78bfa,7c3aed",
     },
     {
       id: 3,
       name: "Neko Neko",
-      img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80",
+      img: "https://source.boringavatars.com/beam/120/iva?colors=cbd5e1,5b21b6,c4b5fd,a78bfa,7c3aed",
     },
   ];
 
   return (
     <div className="stories">
-        <div className="story">
-        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80" alt="" />
-          <span>"Pera Peric"</span>
-          <button>+</button>
-        </div>
-        {stories.map(story=>(
+      <div className="story">
+        <img src="https://source.boringavatars.com/beam/120/iva?colors=cbd5e1,5b21b6,c4b5fd,a78bfa,7c3aed"
+          alt="" />
+        <span>"Pera Peric"</span>
+        <button>+</button>
+      </div>
+      {stories.map(story => (
         <div className="story" key={story.id}>
           <img src={story.img} alt="" />
           <span>{story.name}</span>

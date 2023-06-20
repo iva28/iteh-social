@@ -33,7 +33,7 @@ class UserSeeder extends Seeder
           'name' => 'Milos',
           'surname' => 'Popovic',
         ]);
-          User::factory()->count(7)->create();
+          User::factory()->count(20)->create();
         
 
     }

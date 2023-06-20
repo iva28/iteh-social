@@ -26,6 +26,15 @@ class FriendService
     $user = Auth::id();
     $ids_first = Friend::where('first_user_id', "=", $user)->pluck('second_user_id');
     $ids_second = Friend::where('second_user_id', "=", $user)->pluck('first_user_id');
-    return $ids_first->concat($ids_second);
+    $temp = $ids_first->concat($ids_second);
+    $temp->push($user);
+    return $temp;
+  }
+
+  public function addFriends(int $id)
+  {
+    if (Auth::id() == $id)
+      return null;
+    return Friend::firstOrCreate(['first_user_id' => Auth::id(), 'second_user_id' => $id]);
   }
 }

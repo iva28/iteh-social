@@ -1,12 +1,11 @@
 import React from 'react'
 import "./login.scss"
 import { Link } from 'react-router-dom'
-import { Navigate } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useState } from 'react'
 
-export default function Login() {
+export default function Login({ setCurrentUser }) {
 
   const navigate = useNavigate();
   const [user, setUser] = useState({
@@ -17,21 +16,23 @@ export default function Login() {
 
   async function loginUser(event) {
     event.preventDefault();
-    console.log("stigao");
     axios.defaults.withCredentials = true; //da mi uvek salje cookies back front
     await axios.get("http://localhost:8000/sanctum/csrf-cookie");
-    navigate("/"); 
+    axios.post("http://localhost:8000/api/login", user).then((response) => {
+      if (response.data.success === false) {
+
+      } else {
+        setCurrentUser(response.data.data);
+        navigate("/");
+      }
+    }
+    );
   }
   return (
     <div className='login'>
       <div className="card">
         <div className="left">
           <h1>Hello</h1>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero cum,
-            alias totam numquam ipsa exercitationem dignissimos, error nam,
-            consequatur.
-          </p>
           <span>Don't you have an account?</span>
           <Link to="/register">
             <button>Register</button>

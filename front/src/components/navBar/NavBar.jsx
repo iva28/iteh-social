@@ -2,14 +2,25 @@ import React from 'react'
 import "./navBar.scss"
 //dodajemo ikonice
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import Brightness2OutlinedIcon from '@mui/icons-material/Brightness2Outlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import { Link } from "react-router-dom";
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-function NavBar() {
+
+function NavBar({currentUser}) {
+  const navigate = useNavigate();
+ 
+   function logoutUser(event) {
+    axios.defaults.withCredentials = true; //da mi uvek salje cookies back front
+    axios.post("http://localhost:8000/api/logout").then(() => {
+      navigate("/login");
+    }
+    );
+  }
+
   return (
     <div className='navBar'>
       <div className="left">
@@ -23,13 +34,12 @@ function NavBar() {
         </div>
       </div>
       <div className="right">
-        <PersonOutlineOutlinedIcon />
-        <EmailOutlinedIcon />
-        <NotificationsNoneOutlinedIcon />
-        <div className="user">
-         <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80" alt="" />
-          <span>Pera Peric</span>
-        </div>
+        <LogoutOutlinedIcon  onClick = {logoutUser} />
+        <Link to = "/profile" className="user">
+          <img src={`https://source.boringavatars.com/beam/120/${currentUser.username}?colors=cbd5e1,5b21b6,c4b5fd,a78bfa,7c3aed`}
+            alt="" />
+          <span>{currentUser.name} {currentUser.surname}</span>
+        </Link>
       </div>
     </div>
   )

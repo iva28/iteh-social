@@ -9,6 +9,7 @@ import Message from "../../images/message.jpg"
 import Videos from "../../images/videos.png"
 import { useState } from 'react'
 import Modal from 'react-modal';
+import { Link } from 'react-router-dom'
 Modal.setAppElement('#root');
 
 
@@ -28,10 +29,10 @@ export default function LeftBar() {
     <div className='leftBar'>
       <div className="container">
         <div className="menu">
-          <div className="user">
+          <Link to = "/profile" className="user">
             <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80" alt="" />
             <span>Pera Peric</span>
-          </div>
+          </Link>
           <div className="item">
             <img src={Friends} alt="" />
             <span>Friends</span>
@@ -46,10 +47,6 @@ export default function LeftBar() {
           <div className="item">
             <img src={Message} alt="" onClick={openModal} />
             <span>Message</span>
-          </div>
-          <div className="item">
-            <img src={Videos} alt="" />
-            <span>Videos</span>
           </div>
         </div>
         <hr />

@@ -1,52 +1,72 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./rightBar.scss"
+import axios from 'axios';
+import { useEffect } from 'react';
 
 function RightBar() {
+
+  const [friends, setFriends] = useState([]);
+  const [noFriends, setNoFriends] = useState([]);
+
+  function loadFriends() {
+    axios.defaults.withCredentials = true; //da mi uvek salje cookies back front
+    axios.get("http://localhost:8000/api/friend/getAll").then((result) => {
+      setFriends(result.data.data); //jedno .data je iz axiosa drugo iz laravela
+    }).catch((err) => {
+      console.log(err);
+    });
+
+    axios.get("http://localhost:8000/api/friend/getNoFriends").then((result) => {
+      setNoFriends(result.data.data); //jedno .data je iz axiosa drugo iz laravela
+    }).catch((err) => {
+      console.log(err);
+    });
+  }
+  
+  useEffect(() => {
+    loadFriends();
+  }, [])
+
+  function addFollower(id) {
+    axios.post("http://localhost:8000/api/friend/addFriends/" + id).then(result => {
+      loadFriends();
+    });
+  }
   return (
+
     <div className='rightBar'>
       <div className="container">
         <div className="item">
           <span>Suggestions for you</span>
-          <div className="user">
-            <div className="userInfo">
-              <img
-                src="https://images.pexels.com/photos/4881619/pexels-photo-4881619.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                alt=""
-              />
-              <span>Neko Neko</span>
+          {noFriends.map(friend => (
+            <div className="user">
+              <div className="userInfo">
+                <img
+                  src={`https://source.boringavatars.com/beam/120/${friend.name}?colors=cbd5e1,5b21b6,c4b5fd,a78bfa,7c3aed`}
+                  alt=""
+                />
+                <span>{friend.name} {friend.surname}</span>
+              </div>
+              <div className="buttons" onClick={() => {addFollower(friend.id)}}>
+                <button>Follow</button>
+              </div>
             </div>
-            <div className="buttons">
-              <button>follow</button>
-              <button>dismiss</button>
-            </div>
-          </div>
+          ))}
+
         </div>
         <div className="item">
-          <span>Latest Activities</span>
-          <div className="user">
-            <div className="userInfo">
-              <img
-                src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80"
-                alt=""
-              />
-              <p>
-                <span>Neko Neko</span> Changed their cover picture
-              </p>
+          <span>My friends</span>
+          {friends.map(friend => (
+            <div className="user">
+              <div className="userInfo">
+                <img
+                  src={`https://source.boringavatars.com/beam/120/${friend.name}?colors=cbd5e1,5b21b6,c4b5fd,a78bfa,7c3aed`}
+                  alt=""
+                />
+                <span>{friend.name} {friend.surname}</span>
+              </div>
             </div>
-            <span>Datum neki</span>
-          </div>
-          <div className="user">
-            <div className="userInfo">
-              <img
-                src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80"
-                alt=""
-              />
-              <p>
-                <span>Neko Neko</span> Changed their cover picture
-              </p>
-            </div>
-            <span>Datum neki</span>
-          </div>
+          ))}
         </div>
       </div>
 

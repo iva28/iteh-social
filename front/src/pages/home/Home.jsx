@@ -5,7 +5,7 @@ import Posts from '../../components/posts/Posts'
 function Home() {
   return (
     <div className='home'>
-      <Stories />
+      {/* <Stories /> */}
       <Posts />
     </div>
   )

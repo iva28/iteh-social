@@ -63,4 +63,21 @@
             }
         }
     }
+
+    .comments {
+        .new {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid lightgray;
+            border-radius: 5px;
+            padding: 5px;
+
+            input {
+                border: none;
+            }
+
+        }
+
+    }
 }
