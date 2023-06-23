@@ -14,7 +14,7 @@ class RegistrationRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,7 +25,7 @@ class RegistrationRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => ['required', 'string', 'max:255', Rule::unique(User::class, 'username')],
+            'username' => ['required', 'string', 'max:255', Rule::unique("users", 'username')],
             'password' => ['required', 'string', 'min:5', 'max:255'],
             'name' => ['required', 'string', 'max:255'],
             'surname' => ['required', 'string', 'max:255'],

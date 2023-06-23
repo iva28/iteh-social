@@ -22,7 +22,7 @@ class AuthController extends Controller
     {
         $user = $service->register($request);
         $service->loginUser($user);
-        return response()->json(['success' => true]);
+        return new UserResource(Auth::user());
     }
 
     public function logout(AuthService $service, Request $req)

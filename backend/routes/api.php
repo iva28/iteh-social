@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+//pravimo rutu za registraciju
+Route::post('/register', [AuthController::class, 'register']);
 
 Route::post('/login', [AuthController::class, 'login']);
 
@@ -33,7 +35,7 @@ Route::middleware('auth:web')->group(function () {
 
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/user/{user}', [UserController::class, 'getUser']);
-    
+
     Route::get('/currentUser', [UserController::class, 'getCurrentUser']);
     Route::delete('/delete', [UserController::class, 'deleteUser']);
 });
