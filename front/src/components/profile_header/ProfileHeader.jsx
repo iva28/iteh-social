@@ -62,17 +62,19 @@ function ProfileHeader({ profile, my }) {
                             <div className="item">
                                 <LanguageIcon />
                                 <span>ITEH SOCIAL</span>
-                            </div>
                         </div>
-                        {!my ? <button onClick={() => { addFollower(profile.id) }} >Follow</button> : ""}
+                        
                     </div>
-                    <div className="right">
-                        {my ? <DeleteForeverOutlinedIcon fontSize="large" onClick={deleteProfile} /> : ""}
-                    </div>
+                    {!my ? <button onClick={() => { addFollower(profile.id) }} >Follow</button> : ""}
+                </div>
+                <div className="right">
+                    {my ? <DeleteForeverOutlinedIcon fontSize="large" onClick={deleteProfile} /> : ""}
                 </div>
             </div>
         </div>
 
+    
+    </div>
     )
 }
 

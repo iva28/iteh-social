@@ -101,5 +101,30 @@
           }
         }
       }
+      .forma {
+        display: flex;
+        background-color: rgba(250, 236, 236, 0.427);
+        margin-bottom: 20px;
+         textarea{
+           width: 80%;
+           display: block;
+           border: 1px solid rgb(75, 7, 75);
+           padding: 10px;
+           border-radius: 5px;
+           resize: none;
+         }
+ 
+         button{
+           margin-left: auto;
+           width: 10%;
+           padding: 10px;
+           border: none;
+           background-color: rgb(75, 7, 75);
+           color: white;
+           font-weight: bold;
+           align-self: center;
+           cursor: pointer;
+         }
+       }
     }
   

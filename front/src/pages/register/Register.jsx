@@ -52,8 +52,7 @@ export default function Register({setCurrentUser}) {
                         <input type="password" placeholder="Password" onChange={e => setUser({ ...user, password: e.target.value })}/>
                         <input type="date" placeholder="Date of birth" onChange={e => setUser({ ...user, date_birth: e.target.value })} />
                         <input type="text" placeholder="Bio" onChange={e => setUser({ ...user, bio: e.target.value })} />
-                        <button on onClick={registerUser}>Register</button>
-
+                        <button onClick={registerUser}>Register</button>
                     </form>
                 </div>
             </div>

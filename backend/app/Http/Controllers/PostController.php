@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CommentRequest;
+use App\Http\Requests\PostRequest;
 use App\Http\Resources\CommentResource;
 use App\Http\Resources\PostResource;
 use App\Models\Post;
@@ -21,16 +22,24 @@ class PostController extends Controller
         return PostResource::collection($service->getMy());
     }
 
-    public function addLike(PostService $service, Post $post) {
+    public function addLike(PostService $service, Post $post)
+    {
         $service->addLike($post->id);
         return response()->json(['success' => TRUE]);
     }
 
-    public function getAllComments(PostService $service, Post $post) {
+    public function getAllComments(PostService $service, Post $post)
+    {
         return CommentResource::collection($service->getAllComments($post->id));
     }
 
-    public function addComment(PostService $service, Post $post, CommentRequest $comment) {
-        return $service-> addComment($post->id, $comment);
+    public function addComment(PostService $service, Post $post, CommentRequest $comment)
+    {
+        return $service->addComment($post->id, $comment);
+    }
+
+    public function addPost(PostService $service, PostRequest $post)
+    {
+        return $service->addPost($post);
     }
 }

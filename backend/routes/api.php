@@ -38,4 +38,7 @@ Route::middleware('auth:web')->group(function () {
 
     Route::get('/currentUser', [UserController::class, 'getCurrentUser']);
     Route::delete('/delete', [UserController::class, 'deleteUser']);
+
+
+    Route::post('/addPost', [PostController::class, 'addPost']);
 });
