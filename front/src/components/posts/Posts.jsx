@@ -6,6 +6,7 @@ import axios from 'axios';
 function Posts() {
     const [posts, setPosts] = useState([]);
 
+    
     useEffect(() => {
         axios.defaults.withCredentials = true;
         axios.get("http://localhost:8000/api/posts").then((result) => {
@@ -13,7 +14,7 @@ function Posts() {
         }).catch((err) => {
             console.log(err);
         });
-    },[])
+    }, [])
 
     return (
         <div className='posts'>

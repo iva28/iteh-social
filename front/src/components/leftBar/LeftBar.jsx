@@ -17,6 +17,9 @@ export default function LeftBar() {
 
   const [isOpen, setIsOpen] = useState(false);
 
+  const [adresa, setAdresa] = useState('');
+
+
   const openModal = () => {
     setIsOpen(true);
   };
@@ -25,11 +28,24 @@ export default function LeftBar() {
     setIsOpen(false);
   };
 
+
+  const checkIpAdress = async () => {
+    try {
+      const response = await fetch('https://ipapi.co/json/');
+      const data = await response.json();
+      setAdresa(data);
+      console.log(data);
+
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <div className='leftBar'>
       <div className="container">
         <div className="menu">
-          <Link to = "/profile" className="user">
+         <Link to="/profile" className="user">
             <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80" alt="" />
             <span>Pera Peric</span>
           </Link>
@@ -70,15 +86,15 @@ export default function LeftBar() {
 
           },
         }}>
-          <h2 style={{color: 'white', alignItems: 'center'}}>Unesite poruku</h2>
-          <select style={{height : '35px'}}>
+          <h2 style={{ color: 'white', alignItems: 'center' }}>Unesite poruku</h2>
+          <select style={{ height: '35px' }}>
             <option value="friend1">Neko Neko</option>
             <option value="friend2">Neko Neko</option>
             <option value="friend3">Neko Neko</option>
           </select>
           <input type="text" placeholder="Send a message" style={{
             height: '30px'
-          }}/>
+          }} />
 
           <button onClick={closeModal} style={{
             border: 'none',
@@ -89,7 +105,16 @@ export default function LeftBar() {
             color: ' rgba(75, 7, 75, 0.507)'
           }}>Close</button>
         </Modal>
-
+        </div>
+      <div>
+        {adresa ? (
+          <div className="adress">
+            <div className="adress-item">Your IP adress: {adresa.ip}</div>
+            <div className="adress-item">Country and city: {adresa.country_name}, {adresa.city}</div>
+          </div>
+        ) : (
+          <button onClick={checkIpAdress} style={{ color: 'white', backgroundColor: 'purple', padding: '10px', fontWeight : 'bold' }}>Show IP adress</button>
+        )}
 
       </div>
     </div>

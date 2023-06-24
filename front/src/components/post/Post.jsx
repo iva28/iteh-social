@@ -4,7 +4,7 @@ import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import TextsmsOutlinedIcon from "@mui/icons-material/TextsmsOutlined";
 import "./post.scss";
 import axios from 'axios';
-import { useState } from 'react'
+import { useState , useEffect} from 'react'
 import Comment from '../comments/Comment';
 
 
@@ -14,7 +14,6 @@ function Post({ post }) {
     const [comments, setComments] = useState([]);
     const [commentOn, setCommentOn] = useState(false);
     const [comment, setComment] = useState(null);
-
 
     function manageLike() {
         console.log(post.liked)

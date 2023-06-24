@@ -60,4 +60,5 @@ class PostService
     {
         return Post::create(['user_id' => Auth::id(), 'body' => $request->input('content')]);
     }
+    
 }

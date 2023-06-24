@@ -6,6 +6,7 @@
     overflow: scroll;
     width: 100px;
 
+
     &::-webkit-scrollbar {
         display: none;
     }
@@ -62,7 +63,12 @@
             }
         }
     }
-
+    
+    .adress {
+        color: rgb(75, 7, 75);
+        display: flex;
+        font-weight: bold;
+    }
     
     
 }
