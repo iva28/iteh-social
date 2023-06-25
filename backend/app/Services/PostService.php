@@ -61,4 +61,30 @@ class PostService
         return Post::create(['user_id' => Auth::id(), 'body' => $request->input('content')]);
     }
     
+    public function getAllNotLiked()
+    {
+        $user = Auth::user();
+        return  Post::whereIn('user_id', $this->service->getFriendsIds())
+            ->withCount('comments')->withCount('likes')
+            ->whereDoesntHave('likes', function ($query) {
+                $query->where('user_id', Auth::user()->id);
+            })->with('likes')->where('user_id', '!=', $user->id)->get();
+    }
+
+
+    public function getAllPostUserSent(int $user_id)
+    {
+        return Post::where('user_id', $user_id)->withCount('comments')->withCount('likes')->with('likes')->get();
+    }
+
+
+    //posts for user whose name was in search bar
+    public function getPostsSearch(string $name)
+    {
+        $user = Auth::user();
+        return Post::whereIn('user_id', $this->service->getFriendsIds())
+            ->withCount('comments')->withCount('likes')->with('likes')->where('user_id', '!=', $user->id)->whereHas('user', function ($query) use ($name) {
+                $query->where(strtolower('name'), '=', strtolower($name));
+            })->get();
+    }
 }

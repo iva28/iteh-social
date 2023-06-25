@@ -7,6 +7,7 @@ use App\Http\Requests\PostRequest;
 use App\Http\Resources\CommentResource;
 use App\Http\Resources\PostResource;
 use App\Models\Post;
+use App\Models\User;
 use App\Services\PostService;
 use Illuminate\Http\Request;
 
@@ -42,4 +43,17 @@ class PostController extends Controller
     {
         return $service->addPost($post);
     }
+    public function getAllNotLiked(PostService $service) {
+        return PostResource::collection($service->getAllNotLiked());
+    }
+
+    public function getAllPostUserSent(PostService $service, User $user) {
+        return $service->getAllPostUserSent($user->id);
+    }
+
+    public function getPostsSearch(PostService $service, string $name) {
+        return PostResource::collection($service->getPostsSearch($name));
+    }
+
+
 }
