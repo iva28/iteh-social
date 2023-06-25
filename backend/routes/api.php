@@ -41,4 +41,21 @@ Route::middleware('auth:web')->group(function () {
 
 
     Route::post('/addPost', [PostController::class, 'addPost']);
+
+
+       //dodavanje rute za nelajkovane postove
+       Route::get('/posts/notLiked', [PostController::class, 'getAllNotLiked']);
+
+       //dodavanje rute za postove odredjenog korisnika
+       Route::get('/posts/{user}', [PostController::class, 'getAllPostUserSent']);
+    
+       //pronalazak korisnika na osnovu id
+       Route::get('/user/friend/{id}', [UserController::class, 'getUserById']);
+    
+       //pronalazak korisnika na osnovu imena
+       Route::get('/users/{name}', [UserController::class, 'getUserSearch']);
+    
+    
+       //ruta za pronalazak postova na osnovu imena
+       Route::get('/posts/user/{name}', [PostController::class, 'getPostsSearch']);
 });
