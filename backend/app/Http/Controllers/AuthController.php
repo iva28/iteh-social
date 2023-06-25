@@ -9,14 +9,23 @@ use App\Http\Resources\UserResource;
 use App\Services\AuthService;
 use Illuminate\Support\Facades\Auth;
 
+use App\Http\Resources\AdminResource;
+
 class AuthController extends Controller
 {
     public function login(LoginRequest $request, AuthService $service)
     {
-        $success = $service->login($request);
+        $success = $service->login($request, 'web');
         if ($success) return new UserResource(Auth::user());
         else   return response()->json(['success' => false]);
     }
+    public function loginAdmin(LoginRequest $request, AuthService $service)
+    {
+        $success = $service->login($request, 'admin');
+        if ($success) return new AdminResource(Auth::guard('admin')->user());
+        else   return response()->json(['success' => false]);
+    }
+
 
     public function register(RegistrationRequest $request, AuthService $service)
     {
@@ -27,9 +36,18 @@ class AuthController extends Controller
 
     public function logout(AuthService $service, Request $req)
     {
-        $service->logout();
+        $service->logout('web');
         $req->session()->invalidate();
         $req->session()->regenerateToken();
         return response()->json(['success' => true]);
     }
+
+    public function logoutAdmin(AuthService $service, Request $req)
+    {
+        $service->logout('admin');
+        $req->session()->invalidate();
+        $req->session()->regenerateToken();
+        return response()->json(['success' => true]);
+    }
+
 }

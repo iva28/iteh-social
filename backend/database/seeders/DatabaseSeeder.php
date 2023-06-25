@@ -8,6 +8,8 @@ use Database\Seeders\PostSeeder;
 use Database\Seeders\LikeSeeder;
 use Database\Seeders\CommentSeeder;
 use Database\Seeders\UserSeeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -33,6 +35,12 @@ class DatabaseSeeder extends Seeder
         $likeSeeder = new LikeSeeder();
         $likeSeeder -> run();
         
+        $admin = [
+            'username' => "admin",
+            'password' => Hash::make("password"),
+        ];
+
+        DB::table('admins')->insert($admin);
 
     }
 }

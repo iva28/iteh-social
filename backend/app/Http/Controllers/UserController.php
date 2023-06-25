@@ -30,7 +30,6 @@ class UserController extends Controller
         $req->session()->invalidate();
         $req->session()->regenerateToken();
         return response()->json(['success' => true]);
-   
     }
   
     public function getUserSearch(UserService $service, string $name)  {
@@ -39,5 +38,14 @@ class UserController extends Controller
 
     public function getUserById(UserService $service, User $user) {
         return $service->getUserById($user->id);
+    }
+
+    function getAllUsers() {
+        return UserResource::collection(User::all());
+    }
+
+    function deleteUserId(User $user)  {
+         $user->delete();
+         return response()->json(['success' => true]);
     }
 }

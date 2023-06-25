@@ -11,8 +11,8 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthService {
 
-    public function login(LoginRequest $request) : bool {
-        return Auth::attempt($credentials = ['username'=> $request->string('username'), 'password' => $request->string('password')]);
+    public function login(LoginRequest $request, string $guard) : bool {
+        return Auth::guard($guard)->attempt($credentials = ['username'=> $request->string('username'), 'password' => $request->string('password')]);
     }
 
     public function register(RegistrationRequest $request) {
@@ -21,10 +21,11 @@ class AuthService {
        ]));
     }
 
-    public function logout() {
-        Auth::logout();
+    public function logout(string $guard) {
+        Auth::guard($guard)->logout();
     }
 
+    
     public function loginUser(User $user) {
         Auth::login($user);
     }

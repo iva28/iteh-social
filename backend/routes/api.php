@@ -58,4 +58,17 @@ Route::middleware('auth:web')->group(function () {
     
        //ruta za pronalazak postova na osnovu imena
        Route::get('/posts/user/{name}', [PostController::class, 'getPostsSearch']);
-});
+}
+
+);
+
+
+Route::post('/loginAdmin', [AuthController::class, 'loginAdmin']);
+
+Route::middleware('auth:admin')->group(function () {
+    Route::get('/allUsers', [UserController::class, 'getAllUsers']);
+    Route::delete('/delete/user/{user}', [UserController::class, 'deleteUserId']);
+    Route::post('/logoutAdmin', [AuthController::class, 'logoutAdmin']);
+   
+}
+);

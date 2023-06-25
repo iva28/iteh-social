@@ -35,8 +35,8 @@
   top: 200px;
   left: 320px;
   position: absolute;
-  width: 320px;
-  height: 320px;
+  width: 100px;
+  height: 100px;
   background: rgb(75, 7, 75);
   animation: lds-heart 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
 }
@@ -45,16 +45,16 @@
   content: " ";
   position: absolute;
   display: block;
-  width: 320px;
-  height: 320px;
+  width: 100px;
+  height: 100px;
   background: rgb(75, 7, 75);
 }
 .lds-heart div:before {
-  left: -240px;
+  left: -80px;
   border-radius: 50% 0 0 50%;
 }
 .lds-heart div:after {
-  top: -240px;
+  top: -80px;
   border-radius: 50% 50% 0 0;
 }
 @keyframes lds-heart {

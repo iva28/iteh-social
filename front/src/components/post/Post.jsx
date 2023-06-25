@@ -52,12 +52,12 @@ function Post({ post }) {
     }
 
     const getUnsplahPhotosAPI = () => {
-        return fetch('https://api.unsplash.com/photos?page=1&per_page=200&client_id=' + ACCESS_KEY)
+        return fetch('https://api.unsplash.com/photos?page=1&per_page=400&client_id=' + ACCESS_KEY)
             .then(response => response.json())
             .then(json => {
                 // console.log(json[0]);
                 //console.log(json[0].urls.small);
-                var i = Math.floor(Math.random() * (200 - 1 + 1)) + 1; //za random generisanje brojeva
+                var i = Math.floor(Math.random() * (400 - 1 + 1)) + 1; //za random generisanje brojeva
                 setPhotos(json[i].urls.regular);
             })
             .catch(error => {

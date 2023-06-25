@@ -14,6 +14,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import PostsSearch from './components/posts/PostsSearch';
 import ProfileFriend from './pages/profile/ProfileFriend';
+import AdminUsers from './pages/users/AdminUsers';
+import Admin from './pages/login/Admin';
 
 function App() {
   console.log("kod");
@@ -89,7 +91,15 @@ function App() {
     {
       path: "/register",
       element: <Register setCurrentUser = {setCurrentUser}/>
-    }
+    },
+    {
+      path: "/admin/users",
+      element: <AdminUsers />
+    },
+    {
+      path: "/login/admin",
+      element: <Admin />
+    },
   ])
 
   return (
