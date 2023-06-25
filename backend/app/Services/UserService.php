@@ -14,6 +14,14 @@ class UserService {
          Auth::user()->delete();
          Auth::logout();
     }
+    
+    public function getUserSearch(string $name) {
+        return User::where('name', $name) -> get();
+    }
+
+    public function getUserById(int $id) {
+        return User::where('id', $id) -> get();
+    }
 }
 
 

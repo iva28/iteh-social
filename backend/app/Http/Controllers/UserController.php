@@ -33,4 +33,11 @@ class UserController extends Controller
    
     }
   
+    public function getUserSearch(UserService $service, string $name)  {
+        return $service->getUserSearch($name);
+    }
+
+    public function getUserById(UserService $service, int $user) {
+        return $service->getUserById($user);
+    }
 }
