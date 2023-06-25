@@ -48,7 +48,7 @@ class PostController extends Controller
     }
 
     public function getAllPostUserSent(PostService $service, User $user) {
-        return $service->getAllPostUserSent($user->id);
+        return  PostResource::collection($service->getAllPostUserSent($user->id));
     }
 
     public function getPostsSearch(PostService $service, string $name) {

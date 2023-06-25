@@ -4,7 +4,7 @@ import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import TextsmsOutlinedIcon from "@mui/icons-material/TextsmsOutlined";
 import "./post.scss";
 import axios from 'axios';
-import { useState , useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import Comment from '../comments/Comment';
 
 
@@ -14,6 +14,10 @@ function Post({ post }) {
     const [comments, setComments] = useState([]);
     const [commentOn, setCommentOn] = useState(false);
     const [comment, setComment] = useState(null);
+
+    //kljuc za pristup unsplash API
+    const ACCESS_KEY = "kb8rro_IGzqf3QKx2k9XXjkytMvIiGY7LSFSJznvHy0";
+    const [photos, setPhotos] = useState("");
 
     function manageLike() {
         console.log(post.liked)
@@ -47,12 +51,28 @@ function Post({ post }) {
         })
     }
 
+    const getUnsplahPhotosAPI = () => {
+        return fetch('https://api.unsplash.com/photos?page=1&per_page=200&client_id=' + ACCESS_KEY)
+            .then(response => response.json())
+            .then(json => {
+                // console.log(json[0]);
+                //console.log(json[0].urls.small);
+                var i = Math.floor(Math.random() * (200 - 1 + 1)) + 1; //za random generisanje brojeva
+                setPhotos(json[i].urls.regular);
+            })
+            .catch(error => {
+
+            });
+    };
+
+    getUnsplahPhotosAPI();
+
     return (
         <div className="post">
             <div className="container">
                 <div className="user">
                     <div className="userInfo">
-                        <img src={post.image} alt="" />
+                    <img src={`https://source.boringavatars.com/beam/120/${post.name}?colors=cbd5e1,5b21b6,c4b5fd,a78bfa,7c3aed`} alt="" />
                         <div className="details">
                             <span className="name">{post.name} {post.surname}</span>
                             <span className="date">{post.created_at}</span>
@@ -62,7 +82,7 @@ function Post({ post }) {
                 </div>
                 <div className="content">
                     <p>{post.body}</p>
-                    <img src={post.image} alt="" />
+                    <img src={photos} alt="" />
                 </div>
                 <div className="info">
                     <div className="item" >

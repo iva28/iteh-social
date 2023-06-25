@@ -45,10 +45,11 @@ export default function LeftBar() {
     <div className='leftBar'>
       <div className="container">
         <div className="menu">
-         <Link to="/profile" className="user">
+          {/* <Link to="/profile" className="user">
             <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80" alt="" />
             <span>Pera Peric</span>
           </Link>
+          </Link> */}
           <div className="item">
             <img src={Friends} alt="" />
             <span>Friends</span>

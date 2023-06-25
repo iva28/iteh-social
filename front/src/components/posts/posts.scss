@@ -2,4 +2,13 @@
     display: flex;
     flex-direction: column;
     gap: 50px;
+
+    .button-sort{
+      background-color: rgb(55, 5, 148);
+      color: white;
+      font-weight: bold;
+      border: 3px solid white;
+      border-radius: 20px;
+      height: 30px;
+     }  
   }

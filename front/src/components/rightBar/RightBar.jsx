@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import "./rightBar.scss"
 import axios from 'axios';
 import { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+
 
 function RightBar() {
 
@@ -22,7 +24,7 @@ function RightBar() {
       console.log(err);
     });
   }
-  
+
   useEffect(() => {
     loadFriends();
   }, [])
@@ -30,8 +32,17 @@ function RightBar() {
   function addFollower(id) {
     axios.post("http://localhost:8000/api/friend/addFriends/" + id).then(result => {
       loadFriends();
+      loadFriends("http://localhost:8000/api/friend/a/");
     });
   }
+
+  const navigate = useNavigate();
+
+  function showUser(id) {
+    console.log("user " + id);
+    navigate('/profile/' + id);
+  }
+
   return (
 
     <div className='rightBar'>
@@ -47,7 +58,7 @@ function RightBar() {
                 />
                 <span>{friend.name} {friend.surname}</span>
               </div>
-              <div className="buttons" onClick={() => {addFollower(friend.id)}}>
+              <div className="buttons" onClick={() => { addFollower(friend.id) }}>
                 <button>Follow</button>
               </div>
             </div>
@@ -62,6 +73,7 @@ function RightBar() {
                 <img
                   src={`https://source.boringavatars.com/beam/120/${friend.name}?colors=cbd5e1,5b21b6,c4b5fd,a78bfa,7c3aed`}
                   alt=""
+                  onDoubleClick={() => showUser(friend.id)}
                 />
                 <span>{friend.name} {friend.surname}</span>
               </div>

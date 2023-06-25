@@ -19,7 +19,7 @@ class FriendService
 
   public function getNoFriends()
   {
-    return  User::whereNotIn('id', $this->getFriendsIds())->latest()->limit(10)->get();
+    return  User::whereNotIn('id', $this->getFriendsIds())->limit(10)->get();
   }
   public function getFriendsIds()
   {

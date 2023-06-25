@@ -37,7 +37,7 @@ class UserController extends Controller
         return $service->getUserSearch($name);
     }
 
-    public function getUserById(UserService $service, int $user) {
-        return $service->getUserById($user);
+    public function getUserById(UserService $service, User $user) {
+        return $service->getUserById($user->id);
     }
 }
